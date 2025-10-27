@@ -9,7 +9,8 @@ ROTA_BASE_VERCEL = "/api" if os.getenv("VERCEL") else ""
 app = FastAPI(
     title="Books API",
     version="1.0.0",
-    servers=[{"url": ROTA_BASE_VERCEL}]
+    servers=[{"url": ROTA_BASE_VERCEL}],
+    root_path=ROTA_BASE_VERCEL
 )
 
 app.include_router(rota_saude)
