@@ -1,5 +1,9 @@
 from typing import List, Optional, Dict
 from .modelos import Livro
+import csv
+from pathlib import Path
+
+CSV_CAMINHO = Path("data/livros.csv")
 
 _livros_memoria: List[Dict] = [
     {
@@ -23,6 +27,9 @@ _livros_memoria: List[Dict] = [
 ]
 
 def listar_livros() -> List[Livro]:
+    csv_itens = carregar_do_csv()
+    if csv_itens:
+        return csv_itens
     return [Livro(**d) for d in _livros_memoria]
 
 def obter_livro_por_id(identificador: int) -> Optional[Livro]:
@@ -34,3 +41,21 @@ def obter_livro_por_id(identificador: int) -> Optional[Livro]:
 def listar_generos() -> List[str]:
     generos = sorted({d["genero"] for d in _livros_memoria})
     return generos
+
+def carregar_do_csv() -> List[Livro]:
+    if not CSV_CAMINHO.exists():
+        return []
+    itens: List[Livro] = []
+    with CSV_CAMINHO.open("r", encoding="utf-8") as arq:
+        leitor = csv.DictReader(arq)
+        for row in leitor:
+            itens.append(Livro(
+                id=int(row["id"]),
+                titulo=row["titulo"],
+                preco=float(row["preco"]),
+                nota=float(row["nota"]),
+                disponivel=int(row["disponivel"]),
+                genero=row["genero"],
+                imagem=row["imagem"]
+            ))
+    return itens
