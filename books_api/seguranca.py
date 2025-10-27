@@ -1,7 +1,7 @@
 import os
 import jwt
 from datetime import datetime, timedelta, timezone
-from fastapi import HTTPException, Header, Depends
+from fastapi import HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 SEGREDO_JWT = os.getenv("JWT_SECRET", "segredo-dev")

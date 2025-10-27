@@ -1,9 +1,10 @@
-from typing import List, Optional, Dict
-from .modelos import Livro
 import csv
 from pathlib import Path
+from typing import List, Dict, Optional
+from .modelos import Livro
 
-CSV_CAMINHO = Path("data/livros.csv")
+BASE_DIR = Path(__file__).resolve().parents[1]
+CSV_CAMINHO = BASE_DIR / "data/livros.csv"
 
 _livros_memoria: List[Dict] = [
     {
@@ -32,15 +33,14 @@ def listar_livros() -> List[Livro]:
         return csv_itens
     return [Livro(**d) for d in _livros_memoria]
 
-def obter_livro_por_id(identificador: int) -> Optional[Livro]:
-    for d in _livros_memoria:
-        if d["id"] == identificador:
-            return Livro(**d)
+def obter_livro_por_id(id: int) -> Optional[Livro]:
+    for livro in listar_livros():
+        if livro.id == id:
+            return livro
     return None
 
 def listar_generos() -> List[str]:
-    generos = sorted({d["genero"] for d in _livros_memoria})
-    return generos
+    return sorted({livro.genero for livro in listar_livros()})
 
 def carregar_do_csv() -> List[Livro]:
     if not CSV_CAMINHO.exists():

@@ -18,3 +18,13 @@ GET /api/v1/generos
 ## Autenticação (bônus)
 POST /api/v1/auth/login
 GET  /api/v1/auth/eu  (enviar Authorization: Bearer <token>)
+
+## Coleta de dados (scraping)
+Gera o arquivo CSV com livros extraídos de https://books.toscrape.com/
+
+Rodar:
+poetry env activate
+poetry run python scripts/scraping.py
+
+Saída:
+data/livros.csv

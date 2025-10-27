@@ -20,9 +20,9 @@ def buscar_livros(
     itens_filtrados = filtrar_livros(itens, titulo=titulo, genero=genero)
     return {"total": len(itens_filtrados), "itens": itens_filtrados}
 
-@rota_livros.get("/books/{identificador}", response_model=Livro)
-def detalhar_livro(identificador: int):
-    livro = obter_livro_por_id(identificador)
+@rota_livros.get("/books/{id}", response_model=Livro)
+def detalhar_livro(id: int):
+    livro = obter_livro_por_id(id)
     if not livro:
         raise HTTPException(status_code=404, detail="Livro não encontrado")
     return livro
