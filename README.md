@@ -10,18 +10,27 @@ API RESTful desenvolvida em **FastAPI** para fazer web scraping do catálogo de 
 
 ## Arquitetura
 ```mermaid
+## Arquitetura do Projeto
+
+```mermaid
 flowchart LR
-  A["Cliente (HTTP)"]
-  B["FastAPI (Uvicorn)"]
-  C["Rotas / Endpoints"]
-  D["Dados locais"]
+    subgraph Scraping["Scraping"]
+        A["Site 'books.toscrape.com'"]
+        B["Script Python 'scripts/scraping.py'"]
+        C["Arquivo gerado 'data/books.csv'"]
 
-  A -->|JSON| B
-  B --> C
-  C --> D
+        A -->|"Scraping"| B
+        B -->|"Salva em"| C
+    end
 
-  classDef store fill:#eef,stroke:#88a;
-  class D store;
+    subgraph API["API Pública"]
+        D["API RESTful 'index.py' com FastAPI"]
+        E["Cliente / Usuário"]
+
+        C -->|"Lê dados"| D
+        D -->|"Retorna JSON"| E
+        E -->|"Faz requisições"| D
+    end
 ```
 - **FastAPI** como framework web (ASGI).  
 - **Uvicorn** como servidor de desenvolvimento.  
@@ -80,10 +89,14 @@ poetry shell
 ```
 
 ### Executar o script
-```python scripts/scraping.py```
+```
+python scripts/scraping.py
+```
 
 ### Rodar a API localmente
-```uvicorn index:app --reload```
+```
+uvicorn index:app --reload
+```
 
 ### Acessar a API
 Disponível localmente em http://127.0.0.1:8000.
@@ -99,11 +112,17 @@ Disponível localmente em http://127.0.0.1:8000.
 
 ## Rotas e Endpoints
 
-### Status / Healthcheck
-- `GET /api/v1/health` — retorna informações básicas de saúde do serviço (ex.: `{"status": "ok"}`).
+### GET /api/v1/health
+Retorna status básico do serviço. (ex.: `{"status": "ok"}`).
 
-### Livros
-- `GET /api/v1/books` — exibe a lista completa de livros.
-- `GET /api/v1/books/search` — permite buscar um livro por categoria ou título.
-- `GET /api/v1/books/categories` — exibe todas as categorias de livros.
-- `GET /api/v1/books/{id}` — detalha um livro específico pelo `id`.
+### GET /api/v1/books
+— exibe a lista completa de livros.
+
+### GET /api/v1/books/search
+— permite buscar um livro por categoria ou título.
+
+### GET /api/v1/books/categories
+— exibe todas as categorias de livros.
+
+### GET /api/v1/books/{id}
+— detalha um livro específico pelo `id`.
