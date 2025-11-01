@@ -11,10 +11,8 @@ app = FastAPI(
 )
 
 app.get("/", include_in_schema=False)
-def health():
-    return {"status": "ok"}
 def root():
-    return RedirectResponse(url=app.docs_url, status_code=307)
+    return RedirectResponse(url="/docs", status_code=302)
 
 app.include_router(route_health)
 app.include_router(route_books)
