@@ -1,24 +1,27 @@
 # 📚 Book Scraping API
 
-# Books API
-
 Tech Challenge da Fase 1 da pós-graduação em **Machine Learning Engineering** (FIAP).  
 API RESTful desenvolvida em **FastAPI** para fazer web scraping do catálogo de livros em https://books.toscrape.com/. Traz endpoints públicos para consulta do catálogo. O projeto está preparado para rodar localmente (Uvicorn) e em produção na **Vercel**.
 
-> **Produção:** https://books-api-lilac.vercel.app/ (Redireciona para a documentação Swagger)
->
-> **Vídeo de apresentação:** ...
+- **Produção:** https://books-api-lilac.vercel.app/ (Redireciona para a documentação Swagger)
+- **Vídeo de apresentação:** ...
 
 ---
 
 ## Arquitetura
 ```mermaid
 flowchart LR
-    A[Cliente (HTTP)] -->|JSON| B[FastAPI (Uvicorn)]
-    B --> C[Rotas / Endpoints]
-    C --> D[(Dados locais)]
-    D:::store
-    classDef store fill:#eef,stroke:#88a;
+  A["Cliente (HTTP)"]
+  B["FastAPI (Uvicorn)"]
+  C["Rotas / Endpoints"]
+  D["Dados locais"]
+
+  A -->|JSON| B
+  B --> C
+  C --> D
+
+  classDef store fill:#eef,stroke:#88a;
+  class D store;
 ```
 - **FastAPI** como framework web (ASGI).  
 - **Uvicorn** como servidor de desenvolvimento.  
