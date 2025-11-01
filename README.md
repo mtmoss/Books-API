@@ -11,54 +11,53 @@ API RESTful desenvolvida em **FastAPI** para fazer web scraping do catálogo de 
 ## Arquitetura do projeto
 O diagrama abaixo exemplifica de forma básica o funcionamento da API.
 ```mermaid
-flowchart LR
-    subgraph Scraping["Scraping"]
-        A["Site 'books.toscrape.com'"]
-        B["Script Python 'scripts/scraping.py'"]
-        C["Arquivo gerado 'data/books.csv'"]
-
-        A -->|"Scraping"| B
-        B -->|"Salva em"| C
-    end
-
-    subgraph API["API Pública"]
-        D["API RESTful 'index.py' com FastAPI"]
+---
+config:
+  layout: fixed
+---
+flowchart TD
+ subgraph Scraping["Scraping"]
+        A@{ label: "Site 'books.toscrape.com'" }
+        B@{ label: "Script Python 'scripts/scraping.py'" }
+        C@{ label: "Arquivo 'data/books.csv' gerado" }
+  end
+ subgraph API["API Pública"]
+        D@{ label: "API RESTful 'index.py' com FastAPI" }
         E["Cliente / Usuário"]
-
-        C -->|"Lê dados"| D
-        D -->|"Retorna JSON"| E
-        E -->|"Faz requisições"| D
-    end
+  end
+    A -- Scraping --> B
+    B -- Salva em --> C
+    D -- Retorna JSON --> E
+    E -- Faz requisições --> D
+    D --> C
+    A@{ shape: rect}
+    B@{ shape: rect}
+    C@{ shape: rect}
+    D@{ shape: rect}
 ```
-- **FastAPI** como framework web (ASGI).  
-- **Uvicorn** como servidor de desenvolvimento.  
-- **Routers** organizando os endpoints (ex.: `status`, `books` e, opcionalmente, `auth`).  
-- **Dados**: leitura de um arquivo local (pasta `data/`) ou lista em memória.
+---
 
-## Estrutura de pastas
+## Estrutura dos dados
+Cada livro possui os seguintes campos (api/models.py):
 
-```
-Books-API/
-├─ api/                 # Código da aplicação (routers, modelos, inicialização do FastAPI)
-├─ data/                # Arquivos de dados (o .csv extraído do scraping)
-├─ scripts/             # Script de web scraping
-├─ requirements.txt     # Lista de dependências para deploy
-├─ poetry.lock          # Lockfile do Poetry (gerado com 2.2.1)
-├─ vercel.json          # Configuração de roteamento para produção
-└─ README.md
-```
-
-> Em produção, a raiz (`/`) redireciona para `/docs` (Swagger). Configurado no `vercel.json`.
+| Campo     | Tipo  | Descrição                          |
+|-----------|-------|------------------------------------|
+| id        | int   | Identificador único                |
+| title     | str   | Título do livro                    |
+| price     | float | Preço em libras (£)                |
+| rating    | int   | Avaliação de 1 a 5 estrelas        |
+| available | int   | Número de exemplares disponíveis   |
+| category  | str   | Categoria (gênero literário)       |
+| image     | str   | URL da imagem da capa              |
 
 ---
 
 ## Instalação e configuração (local)
 
 ### Requisitos
-- Python 3.11+ (recomendado 3.13 ou 3.14)
-- Opcional: Poetry 2.x
+- Python 3.12+ (recomendado 3.13 ou 3.14)
 
-### Opção A — com `venv` e `pip`
+### Com `venv` e `pip`
 ```bash
 # clonar o projeto
 git clone https://github.com/mtmoss/Books-API.git
@@ -71,19 +70,6 @@ source .venv/bin/activate  # macOS/Linux
 
 # instalar dependências
 pip install -r requirements.txt
-```
-
-### Opção B — com `poetry`
-```bash
-# clonar o projeto
-git clone https://github.com/mtmoss/Books-API.git
-cd Books-API
-
-# instalar dependências
-poetry install
-
-# ativar o shell do projeto
-poetry shell
 ```
 
 ### Executar o script
@@ -111,16 +97,108 @@ Disponível localmente em http://127.0.0.1:8000.
 ## Rotas e Endpoints
 
 ### GET /api/v1/health
-Retorna status básico do serviço. (ex.: `{"status": "ok"}`).
+Retorna status básico do serviço.
+- Resposta:
+```
+{"status": "ok"}
+```
 
 ### GET /api/v1/books
-— exibe a lista completa de livros.
+Exibe a lista completa de livros extraídos do site https://books.toscrape.com/ e salvos localmente no arquivo data/books.csv.
+- Resposta:
+```
+{
+  "total": 1000,
+  "items": [
+    {
+      "id": 1,
+      "title": "It's Only the Himalayas",
+      "price": 45.17,
+      "rating": 2,
+      "available": 19,
+      "category": "Travel",
+      "image": "http://books.toscrape.com/media/cache/6d/41/6d418a73cc7d4ecfd75ca11d854041db.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Full Moon over Noah's Ark: An Odyssey to Mount Ararat and Beyond",
+      "price": 49.43,
+      "rating": 4,
+      "available": 15,
+      "category": "Travel",
+      "image": "http://books.toscrape.com/media/cache/fe/8a/fe8af6ceec7718986380c0fde9b3b34f.jpg"
+    },
+
+    ...
+
+    ]
+```
 
 ### GET /api/v1/books/search
-— permite buscar um livro por categoria ou título.
+Permite buscar um livro por categoria ou título.
+- Requisição HTTP:
+```
+.../api/v1/books/search?title=torment
+```
+- Resposta:
+```
+{
+  "total": 1,
+  "items": [
+    {
+      "id": 20,
+      "title": "A Time of Torment (Charlie Parker #14)",
+      "price": 48.35,
+      "rating": 5,
+      "available": 14,
+      "category": "Mystery",
+      "image": "http://books.toscrape.com/media/cache/f1/37/f137a410ed7d6fcfce17d081caf97915.jpg"
+    }
+  ]
+}
+```
 
 ### GET /api/v1/books/categories
-— exibe todas as categorias de livros.
+Exibe todas as categorias de livros.
+- Resposta:
+```
+[
+  "Academic",
+  "Add a comment",
+  "Adult Fiction",
+  "Art",
+  "Autobiography",
+  "Biography",
+  "Business",
+  "Childrens",
+  "Christian",
+  "Christian Fiction",
+  "Classics",
+  "Contemporary",
+  "Crime",
+  "Cultural",
+  "Default",
+
+    ...
+
+]
+```
 
 ### GET /api/v1/books/{id}
-— detalha um livro específico pelo `id`.
+Detalha um livro específico pelo `id`.
+- Requisição HTTP:
+```
+.../api/v1/books/874
+```
+- Resposta:
+```
+{
+  "id": 874,
+  "title": "Psycho: Sanitarium (Psycho #1.5)",
+  "price": 36.97,
+  "rating": 5,
+  "available": 12,
+  "category": "Horror",
+  "image": "http://books.toscrape.com/media/cache/91/98/9198cedbd37561f2aa343d3eb04ee703.jpg"
+}
+```
