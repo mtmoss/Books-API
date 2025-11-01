@@ -2,8 +2,6 @@
   "installCommand": "pip3 install --no-cache-dir -r requirements.txt",
   "buildCommand": "",
   "rewrites": [
-    { "source": "/", "destination": "/api" },
-    { "source": "/docs", "destination": "/api/docs" },
-    { "source": "/openapi.json", "destination": "/api/openapi.json" }
+    { "source": "/", "destination": "/api/docs" }
   ]
 }
