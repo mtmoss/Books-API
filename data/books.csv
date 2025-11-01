@@ -1,4 +1,4 @@
-id,titulo,preco,nota,disponivel,genero,imagem
+id,title,price,rating,available,category,image
 1,It's Only the Himalayas,45.17,2.0,19,Travel,http://books.toscrape.com/media/cache/6d/41/6d418a73cc7d4ecfd75ca11d854041db.jpg
 2,Full Moon over Noahâs Ark: An Odyssey to Mount Ararat and Beyond,49.43,4.0,15,Travel,http://books.toscrape.com/media/cache/fe/8a/fe8af6ceec7718986380c0fde9b3b34f.jpg
 3,See America: A Celebration of Our National Parks & Treasured Sites,48.87,3.0,14,Travel,http://books.toscrape.com/media/cache/c7/1a/c71a85dbf8c2dbc75cb271026618477c.jpg
@@ -108,22 +108,57 @@ id,titulo,preco,nota,disponivel,genero,imagem
 107,"Adulthood Is a Myth: A ""Sarah's Scribbles"" Collection",10.9,2.0,14,Sequential Art,http://books.toscrape.com/media/cache/bd/b8/bdb8adf93cb0a6778930ccd543dd9b37.jpg
 108,"Fruits Basket, Vol. 9 (Fruits Basket #9)",33.95,4.0,9,Sequential Art,http://books.toscrape.com/media/cache/3f/97/3f97ab9d27352e8dd24671c945b1c5ac.jpg
 109,Roller Girl,14.1,5.0,8,Sequential Art,http://books.toscrape.com/media/cache/cf/cf/cfcfb88039ddab7d4ae399246529e401.jpg
-110,The Secret Garden,15.08,4.0,5,Classics,http://books.toscrape.com/media/cache/f1/78/f17805e88aed31aae352ab250b2a379d.jpg
-111,The Metamorphosis,28.58,1.0,5,Classics,http://books.toscrape.com/media/cache/9b/33/9b33c3c40c8d27054a3edf96cbf6a2fb.jpg
-112,The Pilgrim's Progress,50.26,2.0,4,Classics,http://books.toscrape.com/media/cache/91/2a/912acfe6ee354d9d9bf3c1fa517c4252.jpg
-113,The Hound of the Baskervilles (Sherlock Holmes #5),14.82,2.0,4,Classics,http://books.toscrape.com/media/cache/9d/fe/9dfe2a73c6a1a1c09927c904de641ebf.jpg
-114,Little Women (Little Women #1),28.07,4.0,4,Classics,http://books.toscrape.com/media/cache/55/a9/55a942b0c092c40bdbb6a1f1be340984.jpg
-115,Gone with the Wind,32.49,3.0,4,Classics,http://books.toscrape.com/media/cache/ac/ee/acee20cff19be38cc3efc5e9b50afae4.jpg
-116,Candide,58.63,3.0,4,Classics,http://books.toscrape.com/media/cache/e7/7d/e77d917c495e649216225bd47e006482.jpg
-117,Animal Farm,57.22,3.0,4,Classics,http://books.toscrape.com/media/cache/73/b9/73b9d68a89e6d037f1afdc70f96bad09.jpg
-118,Wuthering Heights,17.73,3.0,3,Classics,http://books.toscrape.com/media/cache/d8/64/d8644073d00c000cb60643256080cc4b.jpg
-119,The Picture of Dorian Gray,29.7,2.0,3,Classics,http://books.toscrape.com/media/cache/67/29/67297ff3ae6cb02884c52e5250fe7c1a.jpg
-120,The Complete Stories and Poems (The Works of Edgar Allan Poe [Cameo Edition]),26.78,4.0,3,Classics,http://books.toscrape.com/media/cache/55/2d/552d55d44dcc0f27e98b3e7dc3959e1a.jpg
-121,Beowulf,38.35,2.0,3,Classics,http://books.toscrape.com/media/cache/3d/8c/3d8cd7a42d3e57cb10e02f9ab76bd549.jpg
-122,And Then There Were None,35.01,2.0,3,Classics,http://books.toscrape.com/media/cache/6f/b0/6fb0c3064656f888125ab577b6a01867.jpg
-123,The Story of Hong Gildong,43.19,4.0,1,Classics,http://books.toscrape.com/media/cache/b5/5b/b55be7e5c18b62cef6ebeae404f7f643.jpg
-124,The Little Prince,45.42,2.0,1,Classics,http://books.toscrape.com/media/cache/c0/d6/c0d67625e62981155f5e1f553bda1a94.jpg
-125,Sense and Sensibility,37.46,1.0,1,Classics,http://books.toscrape.com/media/cache/a8/57/a857deea83c7d4c66e2920e1cf5d8fe0.jpg
-126,Of Mice and Men,47.11,2.0,1,Classics,http://books.toscrape.com/media/cache/a0/bb/a0bb0881c8ee6f5866804cf0a437853f.jpg
-127,Emma,32.93,2.0,1,Classics,http://books.toscrape.com/media/cache/ae/98/ae98d08a6f427491dd8eda6b51af41fe.jpg
-128,Alice in Wonderland (Alice's Adventures in Wonderland #1),55.53,1.0,1,Classics,http://books.toscrape.com/media/cache/99/df/99df494c230127c3d5ff53153d1f23a3.jpg
+110,"Fruits Basket, Vol. 7 (Fruits Basket #7)",19.57,1.0,7,Sequential Art,http://books.toscrape.com/media/cache/c3/36/c3366ab246bf5e4baec15cdf55915b69.jpg
+111,"Fruits Basket, Vol. 6 (Fruits Basket #6)",20.96,4.0,6,Sequential Art,http://books.toscrape.com/media/cache/cd/b5/cdb5bd3a70cd857879120b4a90192bda.jpg
+112,"Death Note, Vol. 6: Give-and-Take (Death Note #6)",36.39,3.0,6,Sequential Art,http://books.toscrape.com/media/cache/c7/11/c7117547293ca3bb7a6a78e6603f2f8e.jpg
+113,"Fruits Basket, Vol. 5 (Fruits Basket #5)",16.33,1.0,5,Sequential Art,http://books.toscrape.com/media/cache/8e/25/8e259f84683adbaa30452df5aaa142b3.jpg
+114,"Death Note, Vol. 5: Whiteout (Death Note #5)",52.41,1.0,5,Sequential Art,http://books.toscrape.com/media/cache/93/d9/93d98563d32936ffd8db2c19f7857478.jpg
+115,"The Demon Prince of Momochi House, Vol. 4 (The Demon Prince of Momochi House #4)",27.88,2.0,4,Sequential Art,http://books.toscrape.com/media/cache/20/99/20995345e7a87cdfb4503283ae991e84.jpg
+116,"Fruits Basket, Vol. 4 (Fruits Basket #4)",50.44,4.0,4,Sequential Art,http://books.toscrape.com/media/cache/77/0b/770bf7bcb38eaacc6a9392dd0b7af1e4.jpg
+117,"The Wicked + The Divine, Vol. 3: Commercial Suicide (The Wicked + The Divine)",14.41,3.0,3,Sequential Art,http://books.toscrape.com/media/cache/33/cb/33cb44fb2984e4d09dc2263c50b36927.jpg
+118,"The Sandman, Vol. 3: Dream Country (The Sandman (volumes) #3)",55.55,5.0,3,Sequential Art,http://books.toscrape.com/media/cache/df/96/df96b9a9739d2421620bfb3622f3c2d0.jpg
+119,"Saga, Volume 3 (Saga (Collected Editions) #3)",21.57,5.0,3,Sequential Art,http://books.toscrape.com/media/cache/55/89/5589eb7a8127d04add1c4205186d91d4.jpg
+120,Prodigy: The Graphic Novel (Legend: The Graphic Novel #2),43.63,3.0,3,Sequential Art,http://books.toscrape.com/media/cache/1b/8b/1b8b733db667fc3a7bbca0d65fa078f1.jpg
+121,Persepolis: The Story of a Childhood (Persepolis #1-2),39.13,1.0,3,Sequential Art,http://books.toscrape.com/media/cache/9d/5f/9d5f4a231a2ee898ed76f603b3e40163.jpg
+122,Original Fake,31.45,3.0,3,Sequential Art,http://books.toscrape.com/media/cache/39/99/3999845b6800427aad3d45041586a171.jpg
+123,"Grayson, Vol 3: Nemesis (Grayson #3)",42.72,1.0,3,Sequential Art,http://books.toscrape.com/media/cache/a9/10/a9105d5dbdc6a339c21d6635b3dc1697.jpg
+124,"Fruits Basket, Vol. 3 (Fruits Basket #3)",45.17,2.0,3,Sequential Art,http://books.toscrape.com/media/cache/85/d2/85d2821dbc2d274f516582449199015e.jpg
+125,"Black Butler, Vol. 1 (Black Butler #1)",49.31,1.0,3,Sequential Art,http://books.toscrape.com/media/cache/86/bb/86bb13ef73474e6e96acea6e5ff44231.jpg
+126,Awkward,38.02,2.0,3,Sequential Art,http://books.toscrape.com/media/cache/71/82/718278fb0edaa50e1f1930cdd2048d87.jpg
+127,"The Sandman, Vol. 2: The Doll's House (The Sandman (volumes) #2)",54.81,1.0,2,Sequential Art,http://books.toscrape.com/media/cache/b3/48/b3481a7849a7d98131ced57476bb2f26.jpg
+128,"Saga, Volume 2 (Saga (Collected Editions) #2)",11.75,3.0,2,Sequential Art,http://books.toscrape.com/media/cache/bd/1e/bd1e9e86b838676121bc4954ab40712a.jpg
+129,"Fruits Basket, Vol. 2 (Fruits Basket #2)",11.64,5.0,2,Sequential Art,http://books.toscrape.com/media/cache/87/36/8736be56d958f5d8d855108afb206c9f.jpg
+130,"Y: The Last Man, Vol. 1: Unmanned (Y: The Last Man #1)",18.51,4.0,1,Sequential Art,http://books.toscrape.com/media/cache/31/3f/313fb7d006c8c507d63ce7e96b56d925.jpg
+131,"The Wicked + The Divine, Vol. 1: The Faust Act (The Wicked + The Divine)",36.52,2.0,1,Sequential Art,http://books.toscrape.com/media/cache/2a/29/2a296946d7a2ed3829e57d6b155be43b.jpg
+132,"The Sandman, Vol. 1: Preludes and Nocturnes (The Sandman (volumes) #1)",54.12,3.0,1,Sequential Art,http://books.toscrape.com/media/cache/35/18/3518d80c6b73f9c76e9713af42b9c8e1.jpg
+133,The Complete Maus (Maus #1-2),10.64,3.0,1,Sequential Art,http://books.toscrape.com/media/cache/e5/0f/e50f35f47d84efaa739eff59b3dd4f7c.jpg
+134,"Skip Beat!, Vol. 01 (Skip Beat! #1)",42.12,3.0,1,Sequential Art,http://books.toscrape.com/media/cache/03/0a/030af2f71cc40b03f7d79a0929ac9c18.jpg
+135,"Saga, Volume 1 (Saga (Collected Editions) #1)",28.48,1.0,1,Sequential Art,http://books.toscrape.com/media/cache/86/01/860132d9f65dd9df2143fb9071a40115.jpg
+136,"Rat Queens, Vol. 1: Sass & Sorcery (Rat Queens (Collected Editions) #1-5)",46.96,5.0,1,Sequential Art,http://books.toscrape.com/media/cache/70/da/70daa09e4ddebe1d60f50720c0b49976.jpg
+137,"Paper Girls, Vol. 1 (Paper Girls #1-5)",21.71,4.0,1,Sequential Art,http://books.toscrape.com/media/cache/87/b3/87b3b5ff42301d1c7eeb0c81055f1633.jpg
+138,"Ouran High School Host Club, Vol. 1 (Ouran High School Host Club #1)",29.87,3.0,1,Sequential Art,http://books.toscrape.com/media/cache/27/33/27334267037a79caed4d7b0092d59fb5.jpg
+139,"Ms. Marvel, Vol. 1: No Normal (Ms. Marvel (2014-2015) #1)",39.39,4.0,1,Sequential Art,http://books.toscrape.com/media/cache/99/f5/99f511d2d38ef356701341d405a1cca2.jpg
+140,"Hawkeye, Vol. 1: My Life as a Weapon (Hawkeye #1)",45.24,3.0,1,Sequential Art,http://books.toscrape.com/media/cache/66/97/6697a03eedbac77c2e957788e48b70a8.jpg
+141,"Giant Days, Vol. 1 (Giant Days #1-4)",56.76,4.0,1,Sequential Art,http://books.toscrape.com/media/cache/eb/20/eb2063bd8d636cb8200c4b2c7cb6c773.jpg
+142,"Fruits Basket, Vol. 1 (Fruits Basket #1)",40.28,5.0,1,Sequential Art,http://books.toscrape.com/media/cache/03/c5/03c51e2b5bf51a3f55deecbf8c9e8515.jpg
+143,"Bleach, Vol. 1: Strawberry and the Soul Reapers (Bleach #1)",34.65,5.0,1,Sequential Art,http://books.toscrape.com/media/cache/48/b0/48b07e2daa02d7e5485aa546dec5a25e.jpg
+144,"Ajin: Demi-Human, Volume 1 (Ajin: Demi-Human #1)",57.06,4.0,1,Sequential Art,http://books.toscrape.com/media/cache/30/98/309814b6eeba469f4c741147aaaa076a.jpg
+145,The Secret Garden,15.08,4.0,5,Classics,http://books.toscrape.com/media/cache/f1/78/f17805e88aed31aae352ab250b2a379d.jpg
+146,The Metamorphosis,28.58,1.0,5,Classics,http://books.toscrape.com/media/cache/9b/33/9b33c3c40c8d27054a3edf96cbf6a2fb.jpg
+147,The Pilgrim's Progress,50.26,2.0,4,Classics,http://books.toscrape.com/media/cache/91/2a/912acfe6ee354d9d9bf3c1fa517c4252.jpg
+148,The Hound of the Baskervilles (Sherlock Holmes #5),14.82,2.0,4,Classics,http://books.toscrape.com/media/cache/9d/fe/9dfe2a73c6a1a1c09927c904de641ebf.jpg
+149,Little Women (Little Women #1),28.07,4.0,4,Classics,http://books.toscrape.com/media/cache/55/a9/55a942b0c092c40bdbb6a1f1be340984.jpg
+150,Gone with the Wind,32.49,3.0,4,Classics,http://books.toscrape.com/media/cache/ac/ee/acee20cff19be38cc3efc5e9b50afae4.jpg
+151,Candide,58.63,3.0,4,Classics,http://books.toscrape.com/media/cache/e7/7d/e77d917c495e649216225bd47e006482.jpg
+152,Animal Farm,57.22,3.0,4,Classics,http://books.toscrape.com/media/cache/73/b9/73b9d68a89e6d037f1afdc70f96bad09.jpg
+153,Wuthering Heights,17.73,3.0,3,Classics,http://books.toscrape.com/media/cache/d8/64/d8644073d00c000cb60643256080cc4b.jpg
+154,The Picture of Dorian Gray,29.7,2.0,3,Classics,http://books.toscrape.com/media/cache/67/29/67297ff3ae6cb02884c52e5250fe7c1a.jpg
+155,The Complete Stories and Poems (The Works of Edgar Allan Poe [Cameo Edition]),26.78,4.0,3,Classics,http://books.toscrape.com/media/cache/55/2d/552d55d44dcc0f27e98b3e7dc3959e1a.jpg
+156,Beowulf,38.35,2.0,3,Classics,http://books.toscrape.com/media/cache/3d/8c/3d8cd7a42d3e57cb10e02f9ab76bd549.jpg
+157,And Then There Were None,35.01,2.0,3,Classics,http://books.toscrape.com/media/cache/6f/b0/6fb0c3064656f888125ab577b6a01867.jpg
+158,The Story of Hong Gildong,43.19,4.0,1,Classics,http://books.toscrape.com/media/cache/b5/5b/b55be7e5c18b62cef6ebeae404f7f643.jpg
+159,The Little Prince,45.42,2.0,1,Classics,http://books.toscrape.com/media/cache/c0/d6/c0d67625e62981155f5e1f553bda1a94.jpg
+160,Sense and Sensibility,37.46,1.0,1,Classics,http://books.toscrape.com/media/cache/a8/57/a857deea83c7d4c66e2920e1cf5d8fe0.jpg
+161,Of Mice and Men,47.11,2.0,1,Classics,http://books.toscrape.com/media/cache/a0/bb/a0bb0881c8ee6f5866804cf0a437853f.jpg
+162,Emma,32.93,2.0,1,Classics,http://books.toscrape.com/media/cache/ae/98/ae98d08a6f427491dd8eda6b51af41fe.jpg
+163,Alice in Wonderland (Alice's Adventures in Wonderland #1),55.53,1.0,1,Classics,http://books.toscrape.com/media/cache/99/df/99df494c230127c3d5ff53153d1f23a3.jpg

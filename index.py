@@ -1,16 +1,16 @@
 import os
 from fastapi import FastAPI
-from books_api.rotas.saude import rota_saude
-from books_api.rotas.livros import rota_livros
-from books_api.rotas.autenticacao import rota_autenticacao
+from api.routes.health import route_health
+from api.routes.books import route_books
+from api.routes.auth import route_auth
 
-ROTA_BASE_VERCEL = "/api" if os.getenv("VERCEL") else ""
+VERCEL_BASE_ROUTE = "/api" if os.getenv("VERCEL") else ""
 
 app = FastAPI(
-    title="Books API",
+    title="Book Scraping API",
     version="1.0.0"
 )
 
-app.include_router(rota_saude)
-app.include_router(rota_livros)
-app.include_router(rota_autenticacao)
+app.include_router(route_health)
+app.include_router(route_books)
+app.include_router(route_auth)
