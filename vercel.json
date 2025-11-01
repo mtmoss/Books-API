@@ -1,6 +1,4 @@
 {
-  "installCommand": "pip3 install --no-cache-dir -r requirements.txt",
-  "buildCommand": "",
   "redirects": [
     { "source": "/", "destination": "/docs" }
   ]
