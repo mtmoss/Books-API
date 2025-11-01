@@ -8,10 +8,8 @@ API RESTful desenvolvida em **FastAPI** para fazer web scraping do catálogo de 
 
 ---
 
-## Arquitetura
-```mermaid
-## Arquitetura do Projeto
-
+## Arquitetura do projeto
+O diagrama abaixo exemplifica de forma básica o funcionamento da API.
 ```mermaid
 flowchart LR
     subgraph Scraping["Scraping"]
