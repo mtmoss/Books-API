@@ -4,12 +4,35 @@ import re
 from pathlib import Path
 from typing import List, Dict, Optional
 from urllib.parse import urljoin
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+import random
 
 import requests
 from bs4 import BeautifulSoup
 
 BASE = "http://books.toscrape.com/"
 CSV_OUTPUT = Path("data/books.csv")
+SESSION = requests.Session()
+RETRY = Retry(
+    total=5,
+    connect=5,
+    read=5,
+    backoff_factor=0.6,
+    status_forcelist=[429, 500, 502, 503, 504],
+    allowed_methods=["GET"],
+    raise_on_status=False
+)
+
+ADAPTER = HTTPAdapter(max_retries=RETRY, pool_connections=50, pool_maxsize=50)
+SESSION.mount("http://", ADAPTER)
+SESSION.mount("https://", ADAPTER)
+
+DEFAULT_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                  "AppleWebKit/537.36 (KHTML, like Gecko) "
+                  "Chrome/120.0 Safari/537.36"
+}
 
 def get_price(text: str) -> float:
     return float(re.sub(r"[^0-9.]", "", text))
@@ -32,10 +55,16 @@ def get_available(text: str) -> int:
     m = re.search(r"(\d+)\s+available\)", text)
     return int(m.group(1)) if m else 0
 
-def get_soup(url: str) -> BeautifulSoup:
-    resp = requests.get(url, timeout=20)
-    resp.raise_for_status()
-    return BeautifulSoup(resp.text, "html.parser")
+def get_soup(url: str) -> Optional[BeautifulSoup]:
+    try:
+        resp = SESSION.get(url, headers=DEFAULT_HEADERS, timeout=(10, 25))
+        resp.raise_for_status()
+        return BeautifulSoup(resp.text, "html.parser")
+    except requests.RequestException as e:
+        print(f"Falha em {url} -> {e}")
+        return None
+    finally:
+        time.sleep(0.15 + random.random() * 0.25)
 
 def url_category(name_href: str) -> str:
     return urljoin(BASE, name_href)
@@ -62,11 +91,22 @@ def get_books_from_page(soup: BeautifulSoup, current_category: str, page_url: st
         rating = get_rating(article.select_one("p.star-rating"))
 
         detail = get_soup(link)
-        avail_txt = detail.select_one("p.instock.availability").text.strip()
-        available = get_available(avail_txt)
+        if detail is None:
+            continue
 
-        img_rel = detail.select_one("div.item.active > img").get("src", "")
-        image = urljoin(link, img_rel)
+        avail_el = detail.select_one("p.instock.availability")
+        if not avail_el:
+            available = 0
+        else:
+            avail_txt = avail_el.text.strip()
+            available = get_available(avail_txt)
+
+        img_el = detail.select_one("div.item.active > img")
+        if img_el:
+            image_rel = img_el.get("src", "")
+            image = urljoin(link, image_rel)
+        else:
+            image = ""
 
         items.append({
             "title": title,
@@ -76,7 +116,6 @@ def get_books_from_page(soup: BeautifulSoup, current_category: str, page_url: st
             "category": current_category,
             "image": image
         })
-        time.sleep(0.2)
     return items
 
 def get_books() -> List[Dict]:
@@ -92,9 +131,11 @@ def get_books() -> List[Dict]:
         while url:
             pages += 1
             soup = get_soup(url)
+            if soup is None:
+                break
             all_books.extend(get_books_from_page(soup, name, url))
             url = url_next_page(url, soup)
-            time.sleep(0.2)
+            time.sleep(0.6 + random.random() * 0.6)
 
     for i, d in enumerate(all_books, start=1):
         d["id"] = i
