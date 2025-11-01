@@ -11,6 +11,10 @@ app = FastAPI(
     version="1.0.0"
 )
 
+app.get("/")
+def health():
+    return {"status": "ok"}
+
 app.include_router(route_health)
 app.include_router(route_books)
 app.include_router(route_auth)
