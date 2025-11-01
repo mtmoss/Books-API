@@ -1,10 +1,10 @@
 import os
 from fastapi import FastAPI
-from api.routes.health import route_health
-from api.routes.books import route_books
-from api.routes.auth import route_auth
+from routes.health import route_health
+from routes.books import route_books
+from routes.auth import route_auth
 
-VERCEL_BASE_ROUTE = "/api" if os.getenv("VERCEL") else ""
+VERCEL_BASE_ROUTE = "" if os.getenv("VERCEL") else ""
 
 app = FastAPI(
     title="Book Scraping API",
