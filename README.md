@@ -5,7 +5,7 @@ Tech Challenge da Fase 1 da **pós-graduação em Machine Learning Engineering (
 API RESTful desenvolvida em **FastAPI** para fazer web scraping do catálogo de livros em http://books.toscrape.com, utilizando **BeautifulSoup** para extração dos dados e **Pydantic** para validação e estruturação dos modelos.
 Traz endpoints públicos para consulta do catálogo. O projeto está preparado para rodar localmente (**Uvicorn**) e em produção na **Vercel**.
 
-- **Produção:** https://books-api-lilac.vercel.app/ (redireciona para a documentação **Swagger**)
+- **Deploy em produção:** https://books-api-lilac.vercel.app/ (redireciona para a documentação **Swagger**)
 - **Vídeo de apresentação:** https://youtu.be/CcAW5GTtpj4
 
 ## Arquitetura do projeto
