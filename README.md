@@ -27,9 +27,9 @@ flowchart TD
   end
     A -- Scraping --> B
     B -- Salva em --> C
-    D -- Retorna JSON --> E
+    D -- Retorna dados --> E
     E -- Faz requisições --> D
-    D --> C
+    D -- Consulta --> C
     A@{ shape: rect}
     B@{ shape: rect}
     C@{ shape: rect}
