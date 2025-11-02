@@ -1,12 +1,12 @@
 # 📚 Book Scraping API
 
-Tech Challenge da Fase 1 da pós-graduação em **Machine Learning Engineering** (FIAP).  
-API RESTful desenvolvida em **FastAPI** para fazer web scraping do catálogo de livros em https://books.toscrape.com/. Traz endpoints públicos para consulta do catálogo. O projeto está preparado para rodar localmente (Uvicorn) e em produção na **Vercel**.
+Tech Challenge da Fase 1 da **pós-graduação em Machine Learning Engineering (FIAP)**.
 
-- **Produção:** https://books-api-lilac.vercel.app/ (Redireciona para a documentação Swagger)
-- **Vídeo de apresentação:** ...
+API RESTful desenvolvida em **FastAPI** para fazer web scraping do catálogo de livros em http://books.toscrape.com, utilizando **BeautifulSoup** para extração dos dados e **Pydantic** para validação e estruturação dos modelos.
+Traz endpoints públicos para consulta do catálogo. O projeto está preparado para rodar localmente (**Uvicorn**) e em produção na **Vercel**.
 
----
+- **Produção:** https://books-api-lilac.vercel.app/ (redireciona para a documentação **Swagger**)
+- **Vídeo de apresentação:** https://youtu.be/CcAW5GTtpj4
 
 ## Arquitetura do projeto
 O diagrama abaixo exemplifica de forma básica o funcionamento da API.
@@ -35,7 +35,6 @@ flowchart TD
     C@{ shape: rect}
     D@{ shape: rect}
 ```
----
 
 ## Estrutura dos dados
 Cada livro possui os seguintes campos (api/models.py):
@@ -49,8 +48,6 @@ Cada livro possui os seguintes campos (api/models.py):
 | available | int   | Número de exemplares disponíveis   |
 | category  | str   | Categoria (gênero literário)       |
 | image     | str   | URL da imagem da capa              |
-
----
 
 ## Instalação e configuração (local)
 
@@ -85,14 +82,10 @@ uvicorn index:app --reload
 ### Acessar a API
 Disponível localmente em http://127.0.0.1:8000.
 
----
-
 ## Documentação da API (Swagger)
 
 - **Produção:** https://books-api-lilac.vercel.app/docs  
 - **Local:** http://127.0.0.1:8000/docs
-
----
 
 ## Rotas e Endpoints
 
@@ -202,3 +195,21 @@ Detalha um livro específico pelo `id`.
   "image": "http://books.toscrape.com/media/cache/91/98/9198cedbd37561f2aa343d3eb04ee703.jpg"
 }
 ```
+
+## Escalabilidade
+
+O projeto foi estruturado de forma modular (seguindo as boas práticas vistas nas aulas sobre **FastAPI**) e já está preparado para escalar futuramente com:
+- **Banco de dados relacional (PostgreSQL)** em substituição ao CSV.  
+- **Camada de cache (Redis)** para otimizar consultas.  
+- **Containerização (Docker)** e **orquestração (Airflow)** para automação do pipeline.
+
+### Cenário de uso para cientistas de dados
+A API é uma **fonte de dados pronta para consumo em notebooks** de análise.  
+Os cientistas podem importar os dados via `GET /api/v1/books`, filtrar categorias com `/categories` e realizar análises em Python usando **Pandas**.
+
+### Integração com modelos de Machine Learning
+Para um próximo passo, seria possível integrar um **modelo de recomendação de livros**:
+
+- **Treinamento offline:** com dados obtidos pela API, usando técnicas de recomendação baseadas em popularidade ou similaridade de conteúdo.
+- **Serviço on-line:** criação futura de um endpoint `/api/v1/ml/recommend` para retornar previsões em tempo real.  
+- **Escalabilidade:** versionamento de modelos para monitoramento e melhoria contínua.
